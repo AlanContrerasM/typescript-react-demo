@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { FC } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TextField from './components/TextField';
+import { Counter } from './components/Counter';
 
-function App() {
+//important to put the FC here, so typescript knows what we are delaing with
+const App:FC = ()=> {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Let's practice</h1>
+        <TextField text="hello" person={{firstName:"alan" , lastName:"cont"}} 
+        handleChange={(e)=>{
+          //now we have autocomplete here.
+          console.log(e);
+        }}
+        />
+
+        <Counter>
+          {(count, setCount)=>(
+            <div>
+              {count}
+              <button onClick={()=> setCount(count+1)}>+</button>  
+            </div>
+            
+          )}
+        </Counter>
       </header>
     </div>
   );
